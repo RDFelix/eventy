@@ -313,13 +313,14 @@
             $('#ubis').innerHTML = "";
             var y = 0;
             for (const evento of eventos[municipioSeleccionado.dataset.nombre]) {
-              $('#ubis').innerHTML += `<div class="ubicacion eventos" data-nombre="${evento.nombre}" style="transform: translate(${evento.coordenadas[0]}px, ${evento.coordenadas[1]}px);" onclick="evento_pin(${evento.nombre}, ${x})"></div>`;
-              t++;
+              $('#ubis').innerHTML += `<div class="ubicacion eventos" data-nombre="${evento.nombre}" style="transform: translate(${evento.coordenadas[0]}px, ${evento.coordenadas[1]}px);" onclick="evento_pin(${y}, ${x})"></div>`;
+              y++;
             }
-
+            y = 0;
             for (const zona of zonas[x]) {
               console.log(zona.nombre);
-              $('#ubis').innerHTML += `<div class="ubi_zona zonas" data-nombre="${zona.nombre}" style="transform: translate(${zona.coordenadas[0]}px, ${zona.coordenadas[1]}px);" onclick="zona_pin(${zona.nombre}, ${x})"></div>`;
+              $('#ubis').innerHTML += `<div class="ubi_zona zonas" data-nombre="${zona.nombre}" style="transform: translate(${zona.coordenadas[0]}px, ${zona.coordenadas[1]}px);" onclick="zona_pin(${y}, ${x})"></div>`;
+              y++;
             }
 
             municipioSeleccionado.classList.add('selected');
