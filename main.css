@@ -334,7 +334,7 @@ header nav article a{
     background-color: dodgerblue;
     padding: 5px;
     border-radius: 7px;
-    position: absolute;
+    position: fixed;
     bottom: 20px;
     right: 20px;
 }
