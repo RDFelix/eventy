@@ -1,0 +1,343 @@
+/* Estilos Generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #F4F4F4;
+    color: #333;
+    font-size: 16px;
+    line-height: 1.7;
+    margin: 0;
+    overflow-x: hidden;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+}
+
+/* Fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@600&display=swap');
+
+/* Animación general para los textos */
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Encabezado */
+.header {
+   background-image: url("img/Noticias-de-Riohacha-La-Guajira.jpg");
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+    position: relative;
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+}
+
+
+
+.header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 50px;
+    font-weight: 600;
+    text-transform: uppercase;
+    animation: fadeIn 1s ease-out;
+}
+
+.header p {
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 20px auto;
+    opacity: 0;
+    animation: fadeIn 1s ease-out 0.3s forwards;
+}
+
+.header img {
+    transform: translateX(-50%) rotate(-15deg);
+    max-width: 400px;
+    opacity: 0;
+    animation: fadeIn 1s ease-out 0.5s forwards;
+}
+
+/* Secciones */
+.section {
+    padding: 80px 20px;
+    background-color: #FFF;
+    color: #333;
+    margin-bottom: 60px;
+    position: relative;
+    overflow: hidden;
+}
+
+.section h2 {
+    font-size: 36px;
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 30px;
+    opacity: 0;
+    animation: fadeIn 1s ease-out 0.3s forwards;
+}
+
+.section p {
+    font-size: 18px;
+    text-align: center;
+    margin: 20px auto;
+    max-width: 900px;
+    line-height: 1.8;
+    opacity: 0;
+    animation: fadeIn 1s ease-out 0.6s forwards;
+}
+
+/* Animación de imágenes en las características */
+.features {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    opacity: 0;
+    animation: fadeIn 1s ease-out 0.9s forwards;
+    box-sizing: 0xp 0px 0px grey;
+}
+
+.feature {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    transition: transform 0.4s ease-in-out;
+}
+
+.feature:hover {
+    filter: brightness(70%);
+}
+.logo{
+    justify-content: center;
+    height: 200px;
+    width: 100%;
+    
+}
+.feature img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.feature img:hover {
+    transform: scale(1.1);
+}
+
+.feature h3 {
+    font-size: 24px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    margin-top: 20px;
+    color: #1E2A47;
+}
+
+.feature p {
+    font-size: 16px;
+    font-weight: 300;
+    margin-top: 10px;
+    color: #666;
+}
+
+/* Efecto de deslizamiento para el mapa */
+#como-funciona {
+    background-color: #F1F1F1;
+    padding: 80px 20px;
+}
+
+#como-funciona h2 {
+    font-size: 36px;
+    color: #1E2A47;
+    text-align: center;
+    opacity: 0;
+    animation: fadeIn 1s ease-out 0.3s forwards;
+}
+
+#como-funciona p {
+    font-size: 18px;
+    text-align: center;
+    margin: 20px auto;
+    max-width: 900px;
+    line-height: 1.8;
+    opacity: 0;
+    animation: fadeIn 1s ease-out 0.6s forwards;
+}
+
+#como-funciona img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    opacity: 0;
+    animation: fadeIn 1s ease-out 0.9s forwards;
+}
+
+/* Footer */
+footer {
+    background-image: url("img/tropical.jpg");
+    color: #FFF;
+    text-align: center;
+    padding: 40px 20px;
+    margin-top: 60px;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: center;
+    
+    
+}
+
+footer p {
+    font-size: 16px;
+    font-weight: 300;
+    margin-bottom: 20px;
+}
+
+footer .social-links {
+    margin-top: 20px;
+}
+
+footer .social-links a {
+    margin: 0 15px;
+    display: inline-block;
+    opacity: 0;
+    animation: fadeIn 1s ease-out 1s forwards;
+}
+
+footer .social-links img {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease;
+}
+
+footer .social-links a:hover img {
+    transform: scale(1.1);
+}
+
+/* Efectos de desplazamiento */
+.section:hover {
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+}
+
+/* Media Queries para Responsividad */
+@media (max-width: 768px) {
+    .features {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .feature {
+        margin-bottom: 40px;
+    }
+
+    .header h1 {
+        font-size: 36px;
+    }
+
+    .header p {
+        font-size: 18px;
+    }
+
+    .section h2 {
+        font-size: 28px;
+    }
+
+    .section p {
+        font-size: 16px;
+    }
+}
+
+#como-funciona p, #organizadores p {
+    font-size: 18px;
+    text-align: center;
+    max-width: 900px;
+    margin: 20px auto;
+}
+
+/* Estrategia de Marketing y Modelo Comercial */
+#estrategia, #modelo {
+    background-color: #F4F4F4;
+}
+
+#estrategia h2, #modelo h2 {
+    font-size: 30px;
+    color: #1E2A47;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#estrategia p, #modelo p {
+    font-size: 18px;
+    text-align: center;
+    max-width: 900px;
+    margin: 20px auto;
+}
+
+/* Footer */
+footer {
+    background-color: #1E2A47;
+    color: #FFF;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+footer p {
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    margin-bottom: 20px;
+}
+
+footer .social-links {
+    margin-top: 20px;
+}
+
+footer .social-links a {
+    margin: 0 15px;
+    display: inline-block;
+}
+
+footer .social-links img {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease;
+}
+
+footer .social-links a:hover img {
+    transform: scale(1.1);
+}
+
+/* Media Queries para Responsividad */
+@media (max-width: 768px) {
+    .features {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .feature {
+        margin-bottom: 40px;
+    }
+
+    .header h1 {
+        font-size: 36px;
+    }
+
+    .header p {
+        font-size: 18px;
+    }
+
+    .section h2 {
+        font-size: 28px;
+    }
+
+    .section p {
+        font-size: 16px;
+    }
+}

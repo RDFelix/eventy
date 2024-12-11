@@ -1,606 +1,119 @@
-<!doctype html>
-<html lang="es" >
+<!DOCTYPE html>
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="main.css">
-  <link rel="stylesheet" media="all" href="bg.css"/>
-  <link rel="shortcut icon" href="./assets/img/logo_eventy.png" type="image/x-icon">
-  <title>Eventy</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventy - Descubre lo Mejor de La Guajira</title>
+    <link rel="stylesheet" href="landing.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Roboto:wght@300&display=swap" rel="stylesheet">
+
 </head>
 <style>
-  .uribia{
-    clip-path: polygon(53% 23%, 55% 14%, 57% 5%, 66% 0, 81% 0, 100% 0, 100% 13%, 100% 36%, 81% 49%, 51% 50%, 46% 35%);
-  }
+.b:hover{
+    filter: brightness(70%);
+    transition: all .3s ease-in-out;
 
-  .albania{
-      clip-path: polygon(46% 67%, 34% 63%, 38% 57%, 43% 48%, 49% 55%, 52% 61%);
-  }
-
-  .atonuevo{
-      clip-path: polygon(36% 70%, 40% 65%, 47% 69%, 50% 69%, 37% 60%, 27% 66%);
-  }
-
-  .barrancas{
-      clip-path: polygon(32% 75%, 37% 79%, 40% 77%, 48% 70%, 44% 74%, 46% 66%, 39% 63%, 34% 68%, 29% 64%, 26% 68%);
-  }
-
-  .distraccion{
-      clip-path: ellipse(5% 8% at 25% 73%);
-  }
-
-  .dibulla{
-      clip-path: polygon(0 80%, 8% 69%, 17% 59%, 12% 53%, 0 55%);
-  }
-
-  .el_molino{
-      clip-path: polygon(20% 86%, 30% 93%, 34% 89%, 30% 84%, 26% 81%);
-  }
-
-  .fonseca{
-      clip-path: polygon(22% 70%, 28% 65%, 42% 78%, 33% 88%, 26% 80%, 27% 74%);
-  }
-
-  .riohacha{
-    clip-path: polygon(2% 77%, 1% 70%, 8% 60%, 10% 48%, 30% 39%, 47% 56%, 32% 71%);
-  }
-
-  .municipio:hover{
-      filter: drop-shadow(
-          0 0 5px rgb(85, 85, 85)
-      );
-  }
-
-  .municipio.selected {
-      filter: drop-shadow(
-          0 0 5px rgb(85, 85, 85)
-      );
-  }
-
-  .municipio{
-    transition: all .5s ease-in-out;
-  }
-  
-  .disabled{
-      filter: brightness(100%);
-  }
-
-  .ubicacion{
-    position: relative;
-    width: 30px;
-    height: 30px;
-    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-    z-index: 999;
-    box-shadow: 0 0 20px rgba(168, 167, 167, 0.781);
-    animation: salir .3s ease-in-out;
-  }
-
-  .ubi_zona{
-    position: relative;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    z-index: 999;
-    box-shadow: 0 0 20px rgba(168, 167, 167, 0.781);
-    background-color: #da25da;
-    animation: salir .3s ease-in-out;
-  }
-
-  #mapa{
-    width: 100%; 
-    height: 100%;
-    overflow: hidden;
-    position: relative;
-  }
-
-  @media screen and (max-width: 800px) {
-    main{
-      height: auto;
-      flex-direction: column-reverse;
-      aside, section{
-        width: 100%;
-      }
+    &:hover{
+        letter-spacing: 5px;
     }
-
-    .view{
-      transform: translateY(250px);
-      scale: .5;
-    }
-
-    .mapa{
-      height: 50vh;
-    }
-
-    .contenedor{
-      width: 90%;
-    }
-
-    nav{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      article #logo{
-        margin-bottom: 10px;
-      }
-
-      div{
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center ;
-      }
-
-      article a{
-        margin-bottom: 10px;
-      }
-    }
-  }
-
-  @keyframes salir {
-    0%{width: 10px;width: 10px;}
-    100%{width: 30px; height: 30px;}
-  }
-
+}
 </style>
 <body>
-  <div class="button-container">
-    <button class="btn_2"><svg version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <circle fill-rule="evenodd" clip-rule="evenodd" fill="#231F20" cx="32.003" cy="32.005" r="16.001"></circle> <path fill-rule="evenodd" clip-rule="evenodd" fill="#231F20" d="M12.001,31.997c0-2.211-1.789-4-4-4H4c-2.211,0-4,1.789-4,4 s1.789,4,4,4h4C10.212,35.997,12.001,34.208,12.001,31.997z"></path> <path fill-rule="evenodd" clip-rule="evenodd" fill="#231F20" d="M12.204,46.139l-2.832,2.833c-1.563,1.562-1.563,4.094,0,5.656 c1.562,1.562,4.094,1.562,5.657,0l2.833-2.832c1.562-1.562,1.562-4.095,0-5.657C16.298,44.576,13.767,44.576,12.204,46.139z"></path> <path fill-rule="evenodd" clip-rule="evenodd" fill="#231F20" d="M32.003,51.999c-2.211,0-4,1.789-4,4V60c0,2.211,1.789,4,4,4 s4-1.789,4-4l-0.004-4.001C36.003,53.788,34.21,51.999,32.003,51.999z"></path> <path fill-rule="evenodd" clip-rule="evenodd" fill="#231F20" d="M51.798,46.143c-1.559-1.566-4.091-1.566-5.653-0.004 s-1.562,4.095,0,5.657l2.829,2.828c1.562,1.57,4.094,1.562,5.656,0s1.566-4.09,0-5.656L51.798,46.143z"></path> <path fill-rule="evenodd" clip-rule="evenodd" fill="#231F20" d="M60.006,27.997l-4.009,0.008 c-2.203-0.008-3.992,1.781-3.992,3.992c-0.008,2.211,1.789,4,3.992,4h4.001c2.219,0.008,4-1.789,4-4 C64.002,29.79,62.217,27.997,60.006,27.997z"></path> <path fill-rule="evenodd" clip-rule="evenodd" fill="#231F20" d="M51.798,17.859l2.828-2.829c1.574-1.566,1.562-4.094,0-5.657 c-1.559-1.567-4.09-1.567-5.652-0.004l-2.829,2.836c-1.562,1.555-1.562,4.086,0,5.649C47.699,19.426,50.239,19.418,51.798,17.859z"></path> <path fill-rule="evenodd" clip-rule="evenodd" fill="#231F20" d="M32.003,11.995c2.207,0.016,4-1.789,4-3.992v-4 c0-2.219-1.789-4-4-4c-2.211-0.008-4,1.781-4,3.993l0.008,4.008C28.003,10.206,29.792,11.995,32.003,11.995z"></path> <path fill-rule="evenodd" clip-rule="evenodd" fill="#231F20" d="M12.212,17.855c1.555,1.562,4.079,1.562,5.646-0.004 c1.574-1.551,1.566-4.09,0.008-5.649l-2.829-2.828c-1.57-1.571-4.094-1.559-5.657,0c-1.575,1.559-1.575,4.09-0.012,5.653 L12.212,17.855z"></path> </g> </g></svg></button>
-    <button class="btn_2"><svg fill="#000000" height="200px" width="200px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12,0C5.38,0,0,5.38,0,12c0,6.62,5.38,12,12,12c6.62,0,12-5.38,12-12C24,5.38,18.62,0,12,0z M12,22C6.49,22,2,17.51,2,12 C2,6.49,6.49,2,12,2c5.51,0,10,4.49,10,10C22,17.51,17.51,22,12,22z M20,11v2h-7v7h-2v-7H4v-2h7V4h2v7H20z"></path> </g></svg></button>
-    <button class="btn_2"><svg fill="#000000" height="200px" width="200px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12,0C5.38,0,0,5.38,0,12c0,6.62,5.38,12,12,12c6.62,0,12-5.38,12-12C24,5.38,18.62,0,12,0z M12,22C6.49,22,2,17.51,2,12 C2,6.49,6.49,2,12,2c5.51,0,10,4.49,10,10C22,17.51,17.51,22,12,22z M20,11v2H4v-2H20z"></path> </g></svg></button>
-    <button class="btn_2"><svg fill="#000000" viewBox="-5.5 0 19 19" xmlns="http://www.w3.org/2000/svg" class="cf-icon-svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M7.987 5.653a4.536 4.536 0 0 1-.149 1.213 4.276 4.276 0 0 1-.389.958 5.186 5.186 0 0 1-.533.773c-.195.233-.386.454-.568.658l-.024.026c-.17.18-.328.353-.468.516a3.596 3.596 0 0 0-.4.567 2.832 2.832 0 0 0-.274.677 3.374 3.374 0 0 0-.099.858v.05a1.03 1.03 0 0 1-2.058 0v-.05a5.427 5.427 0 0 1 .167-1.385 4.92 4.92 0 0 1 .474-1.17 5.714 5.714 0 0 1 .63-.89c.158-.184.335-.38.525-.579.166-.187.34-.39.52-.603a3.108 3.108 0 0 0 .319-.464 2.236 2.236 0 0 0 .196-.495 2.466 2.466 0 0 0 .073-.66 1.891 1.891 0 0 0-.147-.762 1.944 1.944 0 0 0-.416-.633 1.917 1.917 0 0 0-.62-.418 1.758 1.758 0 0 0-.723-.144 1.823 1.823 0 0 0-.746.146 1.961 1.961 0 0 0-1.06 1.062 1.833 1.833 0 0 0-.146.747v.028a1.03 1.03 0 1 1-2.058 0v-.028a3.882 3.882 0 0 1 .314-1.56 4.017 4.017 0 0 1 2.135-2.139 3.866 3.866 0 0 1 1.561-.314 3.792 3.792 0 0 1 1.543.314A3.975 3.975 0 0 1 7.678 4.09a3.933 3.933 0 0 1 .31 1.563zm-2.738 9.81a1.337 1.337 0 0 1 0 1.033 1.338 1.338 0 0 1-.71.71l-.005.003a1.278 1.278 0 0 1-.505.103 1.338 1.338 0 0 1-1.244-.816 1.313 1.313 0 0 1 .284-1.451 1.396 1.396 0 0 1 .434-.283 1.346 1.346 0 0 1 .526-.105 1.284 1.284 0 0 1 .505.103l.005.003a1.404 1.404 0 0 1 .425.281 1.28 1.28 0 0 1 .285.418z"></path></g></svg></button>
-</div>
-    <div id="municipio_viewer"></div>
-    <header class="contenedor">
-      <nav>
-        <article>
-          <div>
-          <img src="./assets/img/logo_eventy.png" id="logo" alt="">
-        </div>
-          <div>
-          <a href="index.html" type="button" class="btn" onclick="slide(0)">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-              <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-              <g id="SVGRepo_iconCarrier">
-                <path d="M5.5713 14.5L9.46583 18.4141M18.9996 3.60975C17.4044 3.59505 16.6658 4.33233 16.4236 5.07743C16.2103 5.73354 16.4052 7.07735 15.896 8.0727C15.4091 9.02443 14.1204 9.5617 12.6571 9.60697M20 7.6104L20.01 7.61049M19 15.96L19.01 15.9601M7.00001 3.94926L7.01001 3.94936M19 11.1094C17.5 11.1094 16.5 11.6094 15.5949 12.5447M10.2377 7.18796C11 6.10991 11.5 5.10991 11.0082 3.52734M3.53577 20.4645L7.0713 9.85791L14.1424 16.929L3.53577 20.4645Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-              </g>
-            </svg>
-            Actividades
-          </a>
-          <a href="organicer.html" type="button" class="btn" onclick="slide(1)">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M13 20V18C13 15.2386 10.7614 13 8 13C5.23858 13 3 15.2386 3 18V20H13ZM13 20H21V19C21 16.0545 18.7614 14 16 14C14.5867 14 13.3103 14.6255 12.4009 15.6311M11 7C11 8.65685 9.65685 10 8 10C6.34315 10 5 8.65685 5 7C5 5.34315 6.34315 4 8 4C9.65685 4 11 5.34315 11 7ZM18 9C18 10.1046 17.1046 11 16 11C14.8954 11 14 10.1046 14 9C14 7.89543 14.8954 7 16 7C17.1046 7 18 7.89543 18 9Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
-            Organizadores
-          </a>
-        </div>
-        <div>
-          <a href="formulario.html" class="btn" style="text-decoration: none; display: flex; align-items: center;"><span>😁</span>Registra tus Eventos</a>
-        </div>
-        </article>
-      </nav>
-    </header>
-    <main>
-        <aside class="contenedor">
-            <section>
+
+<!-- Encabezado -->
+<header class="header">
+    <img src="img/Gemini_Generated_Image_ntajinntajinntaj-removebg-preview.png" alt="" class="logo">
+    <div class="container" style="background-color: rgba(128, 128, 128, 0.808); border-radius: 25px; height: padding: 50px;;">
+        <h1>¡Descubre lo Mejor de La Guajira con Eventy!</h1>
+        <p>Explora los eventos, lugares icónicos, y rutas turísticas más fascinantes de La Guajira. Todo en un solo lugar, actualizado al instante.</p>
+       <div style="padding: 20px;">
+        <a class="b" href="inicio.html" style="margin: 20px; font-weight: bold; font-size: 20px; padding: 10px; background-color: white; border-radius: 25px; text-decoration: none; color: rgb(35, 166, 241);">Ver actividades</a>
+        <a class="b" href="formulario.html"  style="margin: 20px; font-weight: bold; font-size: 20px; padding: 10px; background-color: rgb(54, 54, 54); border-radius: 25px; text-decoration: none; color: rgb(112, 236, 40);">Ingresa aqui</a>
+       </div>
+    </div>
+</header>
+
+<!-- Sección: ¿Por qué Eventy? -->
+<section id="por-que" class="section">
+    
+    <div class="container">
+        
+        <h2>La Guajira, Como Nunca la Habías Visto</h2>
+        <p>Eventy centraliza toda la información turística de La Guajira, desde eventos hasta rutas turísticas. ¡Haz que tu experiencia sea inolvidable!</p>
+        <div class="features">
+            
+            <div class="feature">
                 <section>
-                  <nav class="filters">
-                    <ul>
-                      <li id="eventos"><button type="button" onclick="menu('eventos')">Eventos</button></li>
-                      <li id="rutas"><button type="button" onclick="menu('rutas')">Rutas</button></li>
-                      <li id="zonas"><button type="button" onclick="menu('zonas')">Zonas turisticas</button></li>
-                    </ul>
-                  </nav>
+                    <img src="img/riohacha.jpg" alt="Imagen de la Guajira" class="section-image" style="height: 300px;">
                 </section>
+                <h3>Información Centralizada</h3>
+                <p>Accede a eventos, lugares turísticos y rutas recomendadas.</p>
+            </div>
+            <div class="feature" style="z-index: 999;">
                 <section>
-                    <input name="searcher" placeholder="Buscar actividades" type="text" class="searcher">
+                    <img src="img/riohacha4.jpg" alt="Imagen de la Guajira" class="section-image" style="transform: scale(1.2); height: 300px;">
                 </section>
-            </section>
-            <section id="cont_cards">
-            </section>
-        </aside>
-        <section class="contenedor mapa">
-          <section id="datos_municipio">
-            <h2 id="nombre_municipio"></h2>
-            <h4>
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M18 7.16C17.94 7.15 17.87 7.15 17.81 7.16C16.43 7.11 15.33 5.98 15.33 4.58C15.33 3.15 16.48 2 17.91 2C19.34 2 20.49 3.16 20.49 4.58C20.48 5.98 19.38 7.11 18 7.16Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M16.9699 14.44C18.3399 14.67 19.8499 14.43 20.9099 13.72C22.3199 12.78 22.3199 11.24 20.9099 10.3C19.8399 9.59004 18.3099 9.35003 16.9399 9.59003" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M5.96998 7.16C6.02998 7.15 6.09998 7.15 6.15998 7.16C7.53998 7.11 8.63998 5.98 8.63998 4.58C8.63998 3.15 7.48998 2 6.05998 2C4.62998 2 3.47998 3.16 3.47998 4.58C3.48998 5.98 4.58998 7.11 5.96998 7.16Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M6.99994 14.44C5.62994 14.67 4.11994 14.43 3.05994 13.72C1.64994 12.78 1.64994 11.24 3.05994 10.3C4.12994 9.59004 5.65994 9.35003 7.02994 9.59003" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M12 14.63C11.94 14.62 11.87 14.62 11.81 14.63C10.43 14.58 9.32996 13.45 9.32996 12.05C9.32996 10.62 10.48 9.46997 11.91 9.46997C13.34 9.46997 14.49 10.63 14.49 12.05C14.48 13.45 13.38 14.59 12 14.63Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M9.08997 17.78C7.67997 18.72 7.67997 20.26 9.08997 21.2C10.69 22.27 13.31 22.27 14.91 21.2C16.32 20.26 16.32 18.72 14.91 17.78C13.32 16.72 10.69 16.72 9.08997 17.78Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
-              <span id="habitantes_municipio"></span> 
-              Habitantes
-            </h4>
-            <p id="descripcion_municipio"></p>
-          </section>
-          <div id="mapa">
-            <section id="view" class="view">
-                <img src="./assets/img/a.svg" alt="" class="" style="filter: drop-shadow( 0 0 5px rgb(85, 85, 85));"/>
-                <img src="./assets/img/uribia.svg" alt="" class="municipio uribia" data-nombre="uribia"/>
-                <img src="./assets/img/riohacha.svg" alt="" class="municipio riohacha" data-nombre="riohacha"/>
-                <article id="ubis" style="width: 500px; height: 500px;">
-                </article>
-            </section>
-          </div>
-        </section>
-    </main>
+                <h3>Actualización Constante</h3>
+                <p>Disfruta de contenido siempre actualizado para no perderte ninguna actividad.</p>
+            </div>
+            <div class="feature">
+                <section>
+                    <img src="img/riohacha6.jpg" alt="Imagen de la Guajira" class="section-image" style="height: 300px;">
+                </section>
+                <h3>Accesibilidad para Todos</h3>
+                <p>Una plataforma fácil de usar para turistas y empresas turísticas.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección: Cómo Funciona Eventy -->
+<section id="como-funciona" class="section">
+    
+    <div class="container">
+        <h2>Tu Guía Turística Digital</h2>
+        <p>Descubre los lugares de interés, eventos y rutas turísticas de La Guajira a través de nuestro mapa interactivo.</p>
+        
+    </div>
+</section>
+
+<!-- Sección: Para Organizadores -->
+<section id="organizadores" class="section">
+    
+    <div class="container">
+        <h2>¡Lleva Tu Negocio al Siguiente Nivel con Eventy!</h2>
+        <p>Si eres una empresa turística o un organizador de eventos, ¡es momento de ser parte de Eventy! Aumenta tu visibilidad y llega a miles de turistas.</p>
+       
+    </div>
+</section>
+
+<!-- Sección: Estrategia de Marketing -->
+<section id="estrategia" class="section">
+   
+    <div class="container">
+        <h2>Creciendo Juntos, Desde el Inicio</h2>
+        <p>Comenzaremos con marketing digital, anuncios en Google y redes sociales para atraer turistas y luego promoveremos la plataforma a los organizadores de eventos.</p>
+    </div>
+</section>
+
+<!-- Sección: Modelo Comercial -->
+<section id="modelo" class="section">
+    
+    <div class="container">
+        <h2>Generando Valor Para Todos</h2>
+        <p>Eventy tiene un modelo comercial basado en ingresos activos y pasivos para garantizar su sostenibilidad.</p>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <p>&copy; 2024 Eventy. Todos los derechos reservados.</p>
+        <div class="social-links">
+            <a href="https://www.facebook.com/profile.php?id=61570130169448&mibextid=ZbWKwL"><img src="img/facebook-svgrepo-com.svg" alt="30px"></a>  <a href="https://www.instagram.com/eventy_guajira?igsh=MWlsaXk1dW96ajBnNw=="><img src="img/instagram-167-svgrepo-com.svg" alt="30px"></a>  <a href="https://x.com/Eventy_Guajira"><img src="img/twitter-3-svgrepo-com.svg" alt=""></a>  <a href=""><img src="img/github-142-svgrepo-com.svg" alt=""></a>
+        </div> 
+    </div>
+</footer>
+
 </body>
-<script>
-    const $ = elemento => document.querySelector(elemento);
-    var municipios = {
-      "distraccion": {
-          nombre: "Distracción",
-          habitantes: "1500", // Aproximado
-          descripcion: "Municipio pequeño con una rica cultura indígena y un entorno natural privilegiado."
-      },
-      "san_juan_cesar": {
-          nombre: "San Juan del Cesar",
-          habitantes: "35000", // Aproximado
-          descripcion: "Famoso por su producción de algodón y su arquitectura colonial."
-      },
-      "maicao": {
-          nombre: "Maicao",
-          habitantes: "120000", // Aproximado
-          descripcion: "Importante centro comercial y cultural de la región, con una fuerte influencia wayúu."
-      },
-      "manaure": {
-          nombre: "Manaure",
-          habitantes: "45000", // Aproximado
-          descripcion: "Conocido por sus salinas y su producción de sal marina."
-      },
-      "villa_nueva": {
-          nombre: "Villa Nueva",
-          habitantes: "25000", // Aproximado
-          descripcion: "Municipio agrícola con una creciente industria turística."
-      },
-      "urumita": {
-          nombre: "Urimita",
-          habitantes: "20000", // Aproximado
-          descripcion: "Famoso por sus artesanías en palma de iraca y su gastronomía tradicional."
-      },
-      "la_jagua_del_pilar": {
-          nombre: "La Jagua del Pilar",
-          habitantes: "30000", // Aproximado
-          descripcion: "Municipio agrícola y ganadero con un importante patrimonio cultural."
-      },
-      "fonseca": {
-          nombre: "Fonseca",
-          habitantes: "40000", // Aproximado
-          descripcion: "Puerto fluvial de gran importancia económica para la región."
-      },
-      "el_molino": {
-          nombre: "El Molino",
-          habitantes: "18000", // Aproximado
-          descripcion: "Municipio agrícola con un clima cálido y seco."
-      },
-      "dibulla": {
-          nombre: "Dibulla",
-          habitantes: "22000", // Aproximado
-          descripcion: "Conocido por sus playas y su producción de carbón."
-      },
-      "barrancas": {
-          nombre: "Barrancas",
-          habitantes: "15000", // Aproximado
-          descripcion: "Municipio agrícola con una rica biodiversidad."
-      },
-      "atonuevo": {
-          nombre: "Atonuevo",
-          habitantes: "28000", // Aproximado
-          descripcion: "Municipio agrícola con una importante producción de arroz."
-      },
-      "albania": {
-          nombre: "Albania",
-          habitantes: "12000", // Aproximado
-          descripcion: "Municipio con un importante patrimonio histórico y cultural."
-      },
-      "uribia": {
-          nombre: "Uribia",
-          habitantes: "80000", // Aproximado
-          descripcion: "Mayor municipio indígena de Colombia, con una fuerte cultura wayúu."
-      },
-      "riohacha": {
-          nombre: "Riohacha",
-          habitantes: "222540", // Datos proporcionados
-          descripcion: "Capital del departamento de La Guajira, conocida por sus hermosas playas y su rica historia."
-      }
-  };
-    let municipioSeleccionado = null;
-    let municipio_viewer = $("#municipio_viewer")
-    $("#mapa").addEventListener('click', (event) => {
-      $('#datos_municipio').style.opacity = "1";
-        if (event.target.classList.contains('municipio')) {
-            if (municipioSeleccionado) {
-                municipioSeleccionado.classList.remove('selected');
-                
-              }
-            municipioSeleccionado = event.target;
-            var x = municipioSeleccionado.dataset.nombre;
-            console.log(x);
-            $('#ubis').innerHTML = "";
-            var y = 0;
-            for (const evento of eventos[municipioSeleccionado.dataset.nombre]) {
-              $('#ubis').innerHTML += `<div class="ubicacion eventos" data-nombre="${evento.nombre}" style="transform: translate(${evento.coordenadas[0]}px, ${evento.coordenadas[1]}px);" onclick="evento_pin(${y}, ${x})"></div>`;
-              y++;
-            }
-            y = 0;
-            for (const zona of zonas[x]) {
-              console.log(zona.nombre);
-              $('#ubis').innerHTML += `<div class="ubi_zona zonas" data-nombre="${zona.nombre}" style="transform: translate(${zona.coordenadas[0]}px, ${zona.coordenadas[1]}px);" onclick="zona_pin(${y}, ${x})"></div>`;
-              y++;
-            }
-
-            municipioSeleccionado.classList.add('selected');
-            $('#nombre_municipio').innerHTML = municipios[municipioSeleccionado.dataset.nombre].nombre;
-            $('#habitantes_municipio').innerHTML = municipios[municipioSeleccionado.dataset.nombre].habitantes;
-            $('#descripcion_municipio').innerHTML = municipios[municipioSeleccionado.dataset.nombre].descripcion;
-        }
-    });
-</script>
-<script>
-  var eventos = {
-    riohacha : [
-      {
-        imagen : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSp9-ftBgE_XZ7KX9o1RHoXq6IfvmgBPAfASw&s",
-        nombre: "Festival de la Hamaca Wayuu",
-        coordenadas: [70, 230],
-        municipio: "Riohacha",
-        fecha: "2024-08-15",
-        lugar: "Plaza Principal",
-        descripcion: "Descubre la maestría de las tejedoras Wayuu y disfruta de actividades culturales.",
-        costo: 0
-      },
-      {
-        imagen : "https://cabodelavela.org/wp-content/uploads/2022/05/ergergrgreg.png",
-        nombre: "Festival Gastronómico Wayuu",
-        coordenadas: [70, 250],
-        municipio: "Maicao",
-        fecha: "2025-06-15",
-        lugar: "Parque Central",
-        descripcion: "Degustación de platos típicos Wayuu y concursos de cocina.",
-        costo: 4000
-      },
-      {
-        imagen : "https://regioncaribe.com.co/wp-content/uploads/2021/07/Con-girasoles-a-bordo-el-nispero-y-el-mango-se-estrenan-en-la-ruta-gastronomica-de-Sazon-Atlantico.jpg",
-        nombre: "Festival del Mango",
-        coordenadas: [50, 270], // Fonseca
-        municipio: "Fonseca",
-        fecha: "2025-07-05",
-        lugar: "Parque de Fonseca",
-        descripcion: "Celebración del mango con degustaciones, concursos y actividades culturales.",
-        costo: 2000
-      },
-      {
-        imagen : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRV-rKg6zPqiXEIiKKR5EjRuAy2jne8ag5P2w&s",
-        nombre: "Encuentro de Artesanos de la Sierra",
-        coordenadas: [150, 130], // Hatonuevo
-        municipio: "Hatonuevo",
-        fecha: "2025-08-15",
-        lugar: "Plaza Principal",
-        descripcion: "Exposición y venta de artesanías de la Sierra de la Macuira.",
-        costo: 0
-      }
-    ],
-    uribia :[
-      {
-        imagen : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRE6IqHwM0jDcc7PdO8cHRzb90z27pjFzH2Mw&s",
-        nombre: "Encuentro de Pilanderas",
-        coordenadas: [400, 100],
-        municipio: "Uribia",
-        fecha: "2024-09-01",
-        lugar: "Playa Mayapo",
-        descripcion: "Asiste a una competencia de pesca tradicional Wayuu.",
-        costo: 5000
-      },
-      {
-        imagen : "assets/img/treatro.jpg",
-        nombre: "Festival de la Yuca",
-        coordenadas: [300, 50],
-        municipio: "Uribia",
-        fecha: "2024-10-15",
-        lugar: "Plaza de la Cultura",
-        descripcion: "Deleita tu paladar con platos típicos a base de yuca.",
-        costo: 3000
-      }
-    ]
-  };
-
-  var zonas = {
-    riohacha: [
-        {
-            nombre: "Playa Mayapo",
-            coordenadas: [77, 210],
-            descripcion: "Una de las playas más hermosas de La Guajira, ideal para relajarse y disfrutar del sol.",
-            imagen: "https://laplayademajo.com/wp-content/uploads/2024/02/Mayapo-Playa-Jimatsu-1024x576.webp",
-            categoria: "Playas"
-        },
-        {
-            nombre: "Centro Histórico de Riohacha",
-            coordenadas: [120, 110],
-            descripcion: "Recorre las calles coloniales y admira la arquitectura de la ciudad.",
-            imagen: "https://live.staticflickr.com/7193/6857781041_03e176403b_b.jpg",
-            categoria: "Ciudad"
-        },
-    ],
-    uribia: [
-        {
-            nombre: "Cabo de la vela",
-            coordenadas: [320, 50],
-            descripcion: "Una de las playas más hermosas de Uribia, ideal para relajarse y disfrutar del sol.",
-            imagen: "https://th.bing.com/th/id/OSK.HEROAekxvbSgz8ETxUo5eSNB8Bq9xgSCH-SXiA11kRpKNnc?rs=1&pid=ImgDetMain",
-            categoria: "Playas"
-        },
-    ],
-};
-
-var rutas = {
-    riohacha: [
-        {
-            nombre: "Ruta del Rey Guajiro",
-            descripcion: "Descubre la magia del desierto de La Guajira, visita el Cabo de la Vela y conoce la cultura Wayúu.",
-            localizacion: 5, 
-            ubicacion: "Cabo de la Vela",
-            organizador: "Tours Guajira",
-            imagen : "https://www.dejusticia.org/wp-content/uploads/2021/10/PHOTO-2020-03-24-19-46-46.jpg"
-        },
-        {
-            nombre: "Ruta de las Playas",
-            descripcion: "Relájate en las hermosas playas de Riohacha, como Mayapo y Camarones.",
-            localizacion: 4,
-            ubicacion: "Playas de Riohacha",
-            organizador: "Aventuras Guajiras",
-            imagen : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNccogun0ksBO0h74d7f0LG0nZnAg8rrn0-w&s"
-        },
-        {
-            nombre: "Ruta Cultural Wayúu",
-            descripcion: "Conoce la artesanía, música y tradiciones de los Wayúu en sus rancherías.",
-            localizacion: 3,
-            ubicacion: "Rancherías Wayúu",
-            organizador: "Guías Wayúu",
-            imagen : "https://diariocaribe.com.co/wp-content/uploads/2023/09/WhatsApp-Image-2023-09-20-at-5.37.38-PM.jpeg"
-        }
-    ],
-    uribia: [
-        {
-            nombre: "Ruta del Pilón",
-            descripcion: "Asciende al Pilón de Azúcar, una formación rocosa sagrada para los Wayúu.",
-            localizacion: 5,
-            ubicacion: "El Pilón",
-            organizador: "Aventuras Wayúu",
-            imagen : "https://laplayademajo.com/wp-content/uploads/2023/07/Cabo-de-la-Vela.webp"
-        },
-        {
-            nombre: "Ruta de las Salinas de Manaure",
-            descripcion: "Descubre el proceso de producción de sal marina en las Salinas de Manaure.",
-            localizacion: 4,
-            ubicacion: "Salinas de Manaure",
-            organizador: "Tours Guajira",
-            imagen : "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/8e/f0/e7/vista-salinas.jpg?w=900&h=500&s=1"
-        }
-    ],
-};
-
-  function mostrar_eventos() {
-    $('#cont_cards').innerHTML = "";
-    for (const municipio in eventos) {
-    console.log(`Eventos en ${municipio}:`);
-    for (const evento of eventos[municipio]) {
-      $('#cont_cards').innerHTML += `
-        <article class="contenedor">
-          <figure>
-            <img src="${evento.imagen}" alt="">
-          </figure>
-          <div>
-            <span class="badge_evento">Evento</span>
-            <h3>${evento.nombre}</h3>
-            <p>${evento.descripcion}</p>
-            <span class=""><img src="./assets/icons/pin.png" alt=""> ${evento.ubicacion}</span>
-            <span class=""><img src="./assets/icons/calendar.png" alt=""> ${evento.localizacion}</span>
-          </div>
-          </article>
-      `;
-    }
-  }
-  }
-
-  function evento_pin(evento, municipio) {
-    var evento = eventos[municipio][i];
-    $('#cont_cards').innerHTML = `
-      <article class="contenedor">
-        <figure>
-          <img src="${evento.imagen}" alt="">
-        </figure>
-        <div>
-          <span class="badge_evento">Evento</span>
-          <h3>${evento.nombre}</h3>
-          <p>${evento.descripcion}</p>
-          <span class=""><img src="./assets/icons/pin.png" alt=""> ${evento.ubicacion}</span>
-          <span class=""><img src="./assets/icons/calendar.png" alt=""> ${evento.localizacion}</span>
-        </div>
-        </article>
-    `;
-  }
-
-  function mostrar_zonas() {
-    $('#cont_cards').innerHTML = "";
-    for (const municipio in zonas) {
-    console.log(`Eventos en ${municipio}:`);
-    for (const zona of zonas[municipio]) {
-      $('#cont_cards').innerHTML += `
-        <article class="contenedor">
-          <figure>
-            <img src="${zona.imagen}" alt="">
-          </figure>
-          <div>
-            <span class="badge_zona">Zona Turistica</span>
-            <h3>${zona.nombre}</h3>
-            <p>${zona.descripcion}</p>
-            <span class=""><img src="./assets/icons/pin.png" alt=""> ${zona.categoria}</span>
-          </div>
-          </article>
-      `;
-    }
-  }
-  }
-
-  function mostrar_rutas() {
-    $('#cont_cards').innerHTML = "";
-    for (const municipio in rutas) {
-    console.log(`Eventos en ${municipio}:`);
-    for (const ruta of rutas[municipio]) {
-      $('#cont_cards').innerHTML += `
-        <article class="contenedor">
-          <figure>
-            <img src="${ruta.imagen}" alt="">
-          </figure>
-          <div>
-            <span class="badge_ruta">Ruta</span>
-            <h3>${ruta.nombre}</h3>
-            <p>${ruta.descripcion}</p>
-            <span class=""><img src="./assets/icons/pin.png" alt=""> ${ruta.categoria}</span>
-          </div>
-          </article>
-      `;
-    }
-  }
-  }
-
-
-  function menu(ventana) {
-      $('#eventos').style.borderBottom = "";
-      $('#rutas').style.borderBottom = "";
-      $('#zonas').style.borderBottom = "";
-
-      switch(ventana){
-        case  "eventos":
-          $('#eventos').style.borderBottom = "3px solid #fffb01";
-          mostrar_eventos();
-          break;
-        case  "rutas":
-          $('#rutas').style.borderBottom = "3px solid #e72828";
-          mostrar_rutas() ;
-          break;
-        case  "zonas":
-          $('#zonas').style.borderBottom = "3px solid #da25da";
-          mostrar_zonas();
-          break;
-      }
-    }
-
-    menu('eventos');
-    mostrar_eventos();
-
-    const elemento = $('.view');
-    let escala = 1; // Valor inicial de escala
-
-    elemento.addEventListener('wheel', (event) => {
-      event.preventDefault();
-
-      // Ajustar la escala
-      escala += event.deltaY < 0 ? 0.1 : -0.1;
-      escala = Math.max(0.5, Math.min(2, escala));
-
-      // Obtener las coordenadas del puntero dentro del elemento
-      const rect = elemento.getBoundingClientRect();
-      const x = event.clientX - rect.left;
-      const y = event.clientY - rect.top;
-
-      // Aplicar la transformación de escala y establecer el origen
-      elemento.style.transformOrigin = `${x}px ${y}px`;
-      elemento.style.transform = `scale(${escala})`;
-    });
-</script>
 </html>

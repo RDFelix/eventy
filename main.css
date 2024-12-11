@@ -83,8 +83,6 @@ header{
     nav{
         max-width: 80vw;
         height: auto;
-        display: flex;
-        justify-content: space-between;
         #logo{
             margin-inline: 20px;
             width: 50px;
@@ -117,7 +115,8 @@ header{
         }
         article{
             display: flex;
-            flex-wrap: wrap;
+            display: flex;
+            justify-content: space-between;
         }
         >article:nth-child(2) button{
             min-width: 150px;
