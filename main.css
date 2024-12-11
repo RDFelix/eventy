@@ -83,7 +83,6 @@ header{
         max-width: 80vw;
         height: auto;
         display: flex;
-        flex-wrap: wrap;
         justify-content: space-between;
         #logo{
             margin-inline: 20px;
@@ -91,6 +90,10 @@ header{
             height: 50px;
             position: relative;
             float: left;
+        }
+
+        div{
+            display: flex;
         }
         button{
             width: auto;
