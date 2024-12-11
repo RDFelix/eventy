@@ -90,6 +90,14 @@
     animation: salir .3s ease-in-out;
   }
 
+  .ubicacion:hover{
+    filter: brightness(50%);
+  }
+
+  .ubi_zona:hover{
+    filter: brightness(50%);
+  }
+
   #mapa{
     width: 100%; 
     height: 100%;
@@ -138,6 +146,10 @@
         margin-bottom: 10px;
       }
     }
+  }
+
+  #datos_municipio{
+    flex-direction: column;
   }
 
   @keyframes salir {
@@ -203,15 +215,20 @@
         </aside>
         <section class="contenedor mapa">
           <section id="datos_municipio">
-            <h2 id="nombre_municipio"></h2>
-            <h4>
+            <button style="background-color: rgb(206, 41, 41); font-weight: bold; border-radius: 5px; padding: 2px; color: wheat; border: none; position: absolute; top: 10px; right: 10px;" onclick="cerrar();">Salir</button>
+            <h2 id="nombre_municipio" style="font-size: 28px; margin: 0; padding: 0;"></h2>
+            <h2>
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M18 7.16C17.94 7.15 17.87 7.15 17.81 7.16C16.43 7.11 15.33 5.98 15.33 4.58C15.33 3.15 16.48 2 17.91 2C19.34 2 20.49 3.16 20.49 4.58C20.48 5.98 19.38 7.11 18 7.16Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M16.9699 14.44C18.3399 14.67 19.8499 14.43 20.9099 13.72C22.3199 12.78 22.3199 11.24 20.9099 10.3C19.8399 9.59004 18.3099 9.35003 16.9399 9.59003" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M5.96998 7.16C6.02998 7.15 6.09998 7.15 6.15998 7.16C7.53998 7.11 8.63998 5.98 8.63998 4.58C8.63998 3.15 7.48998 2 6.05998 2C4.62998 2 3.47998 3.16 3.47998 4.58C3.48998 5.98 4.58998 7.11 5.96998 7.16Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M6.99994 14.44C5.62994 14.67 4.11994 14.43 3.05994 13.72C1.64994 12.78 1.64994 11.24 3.05994 10.3C4.12994 9.59004 5.65994 9.35003 7.02994 9.59003" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M12 14.63C11.94 14.62 11.87 14.62 11.81 14.63C10.43 14.58 9.32996 13.45 9.32996 12.05C9.32996 10.62 10.48 9.46997 11.91 9.46997C13.34 9.46997 14.49 10.63 14.49 12.05C14.48 13.45 13.38 14.59 12 14.63Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M9.08997 17.78C7.67997 18.72 7.67997 20.26 9.08997 21.2C10.69 22.27 13.31 22.27 14.91 21.2C16.32 20.26 16.32 18.72 14.91 17.78C13.32 16.72 10.69 16.72 9.08997 17.78Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
               <span id="habitantes_municipio"></span> 
               Habitantes
-            </h4>
-            <p id="descripcion_municipio"></p>
+            </h2>
+            <p id="descripcion_municipio" style="font-size: 15px;"></p>
+            <div style="display: flex; width: 100%; justify-content: space-around;">
+              <h2 style=""><div class="ubicacion eventos" style="margin-right: 9px;"></div>  Eventos</h2>
+              <h2><div class="ubi_zona zona" style="margin-right: 15px;"></div>  Zonas</h2>
+            </div>
           </section>
-          <div id="mapa">
+          <div id="mapa"> 
             <section id="view" class="view">
                 <img src="./assets/img/a.svg" alt="" class="" style="filter: drop-shadow( 0 0 5px rgb(85, 85, 85));"/>
                 <img src="./assets/img/uribia.svg" alt="" class="municipio uribia" data-nombre="uribia"/>
@@ -224,6 +241,7 @@
     </main>
 </body>
 <script>
+  
     const $ = elemento => document.querySelector(elemento);
     var municipios = {
       "distraccion": {
@@ -306,6 +324,7 @@
     let municipio_viewer = $("#municipio_viewer")
     $("#mapa").addEventListener('click', (event) => {
       $('#datos_municipio').style.opacity = "1";
+      $('#datos_municipio').style.display = "flex";
         if (event.target.classList.contains('municipio')) {
             if (municipioSeleccionado) {
                 municipioSeleccionado.classList.remove('selected');
@@ -317,13 +336,13 @@
             $('#ubis').innerHTML = "";
             var y = 0;
             for (const evento of eventos[municipioSeleccionado.dataset.nombre]) {
-              $('#ubis').innerHTML += `<div class="ubicacion eventos" data-nombre="${evento.nombre}" style="transform: translate(${evento.coordenadas[0]}px, ${evento.coordenadas[1]}px);" onclick="evento_pin(${y}, ${x})"></div>`;
+              $('#ubis').innerHTML += `<div class="ubicacion eventos" data-nombre="${evento.nombre}" style="transform: translate(${evento.coordenadas[0]}px, ${evento.coordenadas[1]}px);" onclick="evento_pin(${y}, '${x}')"></div>`;
               y++;
             }
             y = 0;
             for (const zona of zonas[x]) {
               console.log(zona.nombre);
-              $('#ubis').innerHTML += `<div class="ubi_zona zonas" data-nombre="${zona.nombre}" style="transform: translate(${zona.coordenadas[0]}px, ${zona.coordenadas[1]}px);" onclick="zona_pin(${y}, ${x})"></div>`;
+              $('#ubis').innerHTML += `<div class="ubi_zona zonas" data-nombre="${zona.nombre}" style="transform: translate(${zona.coordenadas[0]}px, ${zona.coordenadas[1]}px);" onclick="zona_pin(${y}, '${x}')"></div>`;
               y++;
             }
 
@@ -331,6 +350,10 @@
             $('#nombre_municipio').innerHTML = municipios[municipioSeleccionado.dataset.nombre].nombre;
             $('#habitantes_municipio').innerHTML = municipios[municipioSeleccionado.dataset.nombre].habitantes;
             $('#descripcion_municipio').innerHTML = municipios[municipioSeleccionado.dataset.nombre].descripcion;
+            
+            $('#cont_cards').innerHTML = "";
+            municipio_eventos(municipioSeleccionado.dataset.nombre);
+            municipio_zonas(municipioSeleccionado.dataset.nombre);
         }
     });
 </script>
@@ -500,8 +523,28 @@ var rutas = {
   }
   }
 
+
+  function municipio_eventos(municipio) {
+    for (const evento of eventos[municipio]) {
+      $('#cont_cards').innerHTML += `
+        <article class="contenedor">
+          <figure>
+            <img src="${evento.imagen}" alt="">
+          </figure>
+          <div>
+            <span class="badge_evento">Evento</span>
+            <h3>${evento.nombre}</h3>
+            <p>${evento.descripcion}</p>
+            <span class=""><img src="./assets/icons/pin.png" alt=""> ${evento.ubicacion}</span>
+            <span class=""><img src="./assets/icons/calendar.png" alt=""> ${evento.localizacion}</span>
+          </div>
+          </article>
+      `;
+    }
+  }
   function evento_pin(evento, municipio) {
-    var evento = eventos[municipio][i];
+    var evento = eventos[municipio][evento];
+    
     $('#cont_cards').innerHTML = `
       <article class="contenedor">
         <figure>
@@ -516,6 +559,23 @@ var rutas = {
         </div>
         </article>
     `;
+  }
+
+  function zona_pin(evento, municipio) {
+      var zona = zonas[municipio][evento]
+      $('#cont_cards').innerHTML = `
+        <article class="contenedor">
+          <figure>
+            <img src="${zona.imagen}" alt="">
+          </figure>
+          <div>
+            <span class="badge_zona">Zona Turistica</span>
+            <h3>${zona.nombre}</h3>
+            <p>${zona.descripcion}</p>
+            <span class=""><img src="./assets/icons/pin.png" alt=""> ${zona.categoria}</span>
+          </div>
+          </article>
+      `;
   }
 
   function mostrar_zonas() {
@@ -540,6 +600,24 @@ var rutas = {
   }
   }
 
+  function municipio_zonas(municipio) {
+    for (const zona of zonas[municipio]) {
+      $('#cont_cards').innerHTML += `
+        <article class="contenedor">
+          <figure>
+            <img src="${zona.imagen}" alt="">
+          </figure>
+          <div>
+            <span class="badge_zona">Zona Turistica</span>
+            <h3>${zona.nombre}</h3>
+            <p>${zona.descripcion}</p>
+            <span class=""><img src="./assets/icons/pin.png" alt=""> ${zona.categoria}</span>
+          </div>
+          </article>
+      `;
+    }
+  }
+
   function mostrar_rutas() {
     $('#cont_cards').innerHTML = "";
     for (const municipio in rutas) {
@@ -562,7 +640,6 @@ var rutas = {
   }
   }
 
-
   function menu(ventana) {
       $('#eventos').style.borderBottom = "";
       $('#rutas').style.borderBottom = "";
@@ -584,7 +661,7 @@ var rutas = {
       }
     }
 
-    menu('eventos');
+    menu('eventos');  
     mostrar_eventos();
 
     const elemento = $('.view');
@@ -606,5 +683,9 @@ var rutas = {
       elemento.style.transformOrigin = `${x}px ${y}px`;
       elemento.style.transform = `scale(${escala})`;
     });
+
+    function cerrar() {
+      $('#datos_municipio').style.display = "none";
+    }
 </script>
 </html>

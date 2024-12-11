@@ -212,6 +212,9 @@ main{
                     display: flex;
                     flex-direction: column;
                     padding: 15px 15px 15px 0;
+                    h3{
+                        font-size: 16px;
+                    }
                     span{
                         img{
                             width: 20px;
@@ -244,13 +247,15 @@ main{
             color: rgb(141, 195, 243);
             font-size: var(--font-size);
             z-index: 9999;
-            h4{
+            h2{
                 display: flex;
                 align-items: center;
+                font-size: 15px;
             }
 
             span{
                 margin-right: 5px;
+                font-size: 15px;
             }
 
             svg{
