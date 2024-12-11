@@ -12,9 +12,12 @@
 .b:hover{
     filter: brightness(70%);
     transition: all .3s ease-in-out;
-
-    &:hover{
-        letter-spacing: 5px;
+}
+.b {
+    border: none;
+    a{
+        text-decoration: none;
+        color: rgb(20, 97, 241);
     }
 }
 </style>
@@ -27,8 +30,8 @@
         <h1>¡Descubre lo Mejor de La Guajira con Eventy!</h1>
         <p>Explora los eventos, lugares icónicos, y rutas turísticas más fascinantes de La Guajira. Todo en un solo lugar, actualizado al instante.</p>
        <div style="padding: 20px;">
-        <a class="b" href="inicio.html" style="margin: 20px; font-weight: bold; font-size: 20px; padding: 10px; background-color: white; border-radius: 25px; text-decoration: none; color: rgb(35, 166, 241);">Ver actividades</a>
-        <a class="b" href="formulario.html"  style="margin: 20px; font-weight: bold; font-size: 20px; padding: 10px; background-color: rgb(54, 54, 54); border-radius: 25px; text-decoration: none; color: rgb(112, 236, 40);">Ingresa aqui</a>
+        <button class="b" style="margin: 20px; font-weight: bold; font-size: 20px; padding: 10px; background-color: white; border-radius: 25px; text-decoration: none; color: rgb(35, 166, 241);"><a href="inicio.html" >Estas buscando algo nuevo en la guajira? Ver actividades</a></button>
+        <button class="b"  style="margin: 20px; font-weight: bold; font-size: 20px; padding: 10px; background-color: rgb(54, 54, 54); border-radius: 25px; text-decoration: none; color: rgb(112, 236, 40);"><a href="formulario.html" >Quieres publicar una actividad? Ingresa aqui</a></button>
        </div>
     </div>
 </header>
