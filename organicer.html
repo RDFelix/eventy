@@ -82,27 +82,45 @@
   }
 
   @media screen and (max-width: 800px) {
-    main {
+    main{
       height: auto;
       flex-direction: column-reverse;
-
-      aside,
-      section {
+      aside, section{
         width: 100%;
       }
     }
 
-    .view {
+    .view{
       transform: translateY(250px);
       scale: .5;
     }
 
-    .mapa {
+    .mapa{
       height: 50vh;
     }
 
-    .contenedor {
+    .contenedor{
       width: 90%;
+    }
+
+    nav{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      article #logo{
+        margin-bottom: 10px;
+      }
+
+      div{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center ;
+      }
+
+      article a{
+        margin-bottom: 10px;
+      }
     }
   }
 
