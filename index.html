@@ -75,6 +75,17 @@
     animation: salir .3s ease-in-out;
   }
 
+  .ubi_zona{
+    position: relative;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    z-index: 999;
+    box-shadow: 0 0 20px rgba(168, 167, 167, 0.781);
+    background-color: #da25da;
+    animation: salir .3s ease-in-out;
+  }
+
   #mapa{
     width: 100%; 
     height: 100%;
@@ -119,9 +130,10 @@
         align-items: center ;
       }
 
-      article button{
+      article a{
         margin-bottom: 10px;
       }
+    }
   }
 
   @keyframes salir {
@@ -139,7 +151,7 @@
           <img src="./assets/img/logo_eventy.png" id="logo" alt="">
         </div>
           <div>
-          <button type="button" class="btn" onclick="slide(0)">
+          <a href="index.html" type="button" class="btn" onclick="slide(0)">
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
               <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -147,12 +159,12 @@
                 <path d="M5.5713 14.5L9.46583 18.4141M18.9996 3.60975C17.4044 3.59505 16.6658 4.33233 16.4236 5.07743C16.2103 5.73354 16.4052 7.07735 15.896 8.0727C15.4091 9.02443 14.1204 9.5617 12.6571 9.60697M20 7.6104L20.01 7.61049M19 15.96L19.01 15.9601M7.00001 3.94926L7.01001 3.94936M19 11.1094C17.5 11.1094 16.5 11.6094 15.5949 12.5447M10.2377 7.18796C11 6.10991 11.5 5.10991 11.0082 3.52734M3.53577 20.4645L7.0713 9.85791L14.1424 16.929L3.53577 20.4645Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
               </g>
             </svg>
-            Eventos
-          </button>
-          <button type="button" class="btn" onclick="slide(1)">
+            Actividades
+          </a>
+          <a href="organicer.html" type="button" class="btn" onclick="slide(1)">
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M13 20V18C13 15.2386 10.7614 13 8 13C5.23858 13 3 15.2386 3 18V20H13ZM13 20H21V19C21 16.0545 18.7614 14 16 14C14.5867 14 13.3103 14.6255 12.4009 15.6311M11 7C11 8.65685 9.65685 10 8 10C6.34315 10 5 8.65685 5 7C5 5.34315 6.34315 4 8 4C9.65685 4 11 5.34315 11 7ZM18 9C18 10.1046 17.1046 11 16 11C14.8954 11 14 10.1046 14 9C14 7.89543 14.8954 7 16 7C17.1046 7 18 7.89543 18 9Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
             Organizadores
-          </button>
+          </a>
         </div>
         <div>
           <a href="formulario.html" class="btn" style="text-decoration: none; display: flex; align-items: center;"><span>😁</span>Registra tus Eventos</a>
@@ -290,9 +302,16 @@
                 
               }
             municipioSeleccionado = event.target;
+            var x = municipioSeleccionado.dataset.nombre;
+            console.log(x);
             $('#ubis').innerHTML = "";
             for (const evento of eventos[municipioSeleccionado.dataset.nombre]) {
-              $('#ubis').innerHTML += `<div class="ubicacion eventos" data-nombre="${evento.nombre}" style="transform: translate(${evento.coordenadas[0]}px, ${evento.coordenadas[1]}px);"></div>`;
+              $('#ubis').innerHTML += `<div class="ubicacion eventos" data-nombre="${evento.nombre}" style="transform: translate(${evento.coordenadas[0]}px, ${evento.coordenadas[1]}px);" onclick="evento_pin(${evento.nombre}, ${x})"></div>`;
+            }
+
+            for (const zona of zonas[x]) {
+              console.log(zona.nombre);
+              $('#ubis').innerHTML += `<div class="ubi_zona zonas" data-nombre="${zona.nombre}" style="transform: translate(${zona.coordenadas[0]}px, ${zona.coordenadas[1]}px);" onclick="zona_pin(${zona.nombre}, ${x})"></div>`;
             }
 
             municipioSeleccionado.classList.add('selected');
@@ -374,17 +393,26 @@
     riohacha: [
         {
             nombre: "Playa Mayapo",
-            coordenadas: [11.3056, -72.9028],
+            coordenadas: [77, 210],
             descripcion: "Una de las playas más hermosas de La Guajira, ideal para relajarse y disfrutar del sol.",
             imagen: "https://laplayademajo.com/wp-content/uploads/2024/02/Mayapo-Playa-Jimatsu-1024x576.webp",
             categoria: "Playas"
         },
         {
             nombre: "Centro Histórico de Riohacha",
-            coordenadas: [11.5458, -73.0833],
+            coordenadas: [120, 110],
             descripcion: "Recorre las calles coloniales y admira la arquitectura de la ciudad.",
             imagen: "https://live.staticflickr.com/7193/6857781041_03e176403b_b.jpg",
             categoria: "Ciudad"
+        },
+    ],
+    uribia: [
+        {
+            nombre: "Cabo de la vela",
+            coordenadas: [320, 50],
+            descripcion: "Una de las playas más hermosas de Uribia, ideal para relajarse y disfrutar del sol.",
+            imagen: "https://th.bing.com/th/id/OSK.HEROAekxvbSgz8ETxUo5eSNB8Bq9xgSCH-SXiA11kRpKNnc?rs=1&pid=ImgDetMain",
+            categoria: "Playas"
         },
     ],
 };
@@ -437,6 +465,29 @@ var rutas = {
 };
 
   function mostrar_eventos() {
+    $('#cont_cards').innerHTML = "";
+    for (const municipio in eventos) {
+    console.log(`Eventos en ${municipio}:`);
+    for (const evento of eventos[municipio]) {
+      $('#cont_cards').innerHTML += `
+        <article class="contenedor">
+          <figure>
+            <img src="${evento.imagen}" alt="">
+          </figure>
+          <div>
+            <span class="badge_evento">Evento</span>
+            <h3>${evento.nombre}</h3>
+            <p>${evento.descripcion}</p>
+            <span class=""><img src="./assets/icons/pin.png" alt=""> ${evento.ubicacion}</span>
+            <span class=""><img src="./assets/icons/calendar.png" alt=""> ${evento.localizacion}</span>
+          </div>
+          </article>
+      `;
+    }
+  }
+  }
+
+  function evento_pin() {
     $('#cont_cards').innerHTML = "";
     for (const municipio in eventos) {
     console.log(`Eventos en ${municipio}:`);

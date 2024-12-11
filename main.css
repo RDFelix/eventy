@@ -21,6 +21,7 @@ body{
     background-repeat: no-repeat; /* Evita que la imagen se repita */
 }
 
+
 input{
     background-color: none;
     border: none;
@@ -95,7 +96,8 @@ header{
         div{
             display: flex;
         }
-        button{
+        a{
+            text-decoration: none;
             width: auto;
             margin: 0px 10px;
             height: auto;
@@ -206,13 +208,6 @@ main{
                         height: 100%;
                         transition: all .3s ease-in-out;
                     }
-                    &:hover{
-                        filter: brightness(70%);
-                        >img{
-                            scale: 1.2;
-                            rotate: 5deg;
-                        }
-                    }
                 }
                 div{
                     display: flex;
@@ -224,6 +219,13 @@ main{
                             height: 20px;     
                         }
                         
+                    }
+                }
+                &:hover figure{
+                    filter: brightness(70%);
+                    >img{
+                        scale: 1.2;
+                        rotate: 5deg;
                     }
                 }
             }
