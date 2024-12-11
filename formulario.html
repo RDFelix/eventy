@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Andev web - Validar formulario</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="db.js"></script>
+    <script src="validacion.js"></script>
+  </head>
+  <body>
+    <div class="container" id="container">
+      <div class="form-container register-container">
+        <form id="usuarios">
+          <h1>Registrate</h1>
+          <div class="form-control">
+            <input type="number" id="username" placeholder="Codigo"  name="codigo"/>
+          </div>
+          <div class="form-control">
+            <input type="text" id="representate" placeholder="Representate"  name="representante"/>
+          </div>
+          <div class="form-control">
+            <input type="text" id="nit" placeholder="Nit de la empresa"  name="Identificacion"/>
+          </div>
+          <div class="form-control">
+            <label for="w3review" class="descrip">Registro Mercantil</label>
+            <input type="file"  class="Mercantil" name="registro_mercantil">
+          </div>
+          <div class="form-control">
+            <input type="text" id="ubic" placeholder="Ubicacion" name="Ubicacion" />
+          </div>
+          <div class="form-control">
+            <label for="w3review" class="descrip" >Descripciòn</label>
+            <textarea name="Descripción" id="Descripciòn" >
+
+            </textarea>
+          </div>
+          <div class="form-control">
+            <select name="tamaño">
+              <optgroup>
+                <option selected disabled>Tamaño de la Emprea</option>
+                <option value="pequeña">pequeña</option>
+                <option value="mediana">Nediana</option>
+                <option value="grande">Grande</option>
+              </optgroup>
+            </select>
+          </div>
+          <div class="form-control">
+            <input type="password" id="ubic" placeholder="Contraseña" name="contraseña" />
+          </div>
+          <button type="submit" value="submit">Registrar</button>
+          
+          
+        </form>
+      </div>
+
+      <div class="form-container login-container">
+        <form class="form-lg" id="loginForm">
+          <h1>Inicia sesión aquí</h1>
+          <div class="form-control2">
+            <input type="text" class="email-2"  name="Identificacion" placeholder="Nit De la Empresa" />
+            <small class="email-error-2"></small>
+            <span></span>
+          </div>
+          <div class="form-control2">
+            <input type="password" class="password-2" name="contraseña" placeholder="Contraseña" />
+            <small class="password-error-2"></small>
+            <span></span>
+          </div>
+
+          <div class="content">
+            <div class="checkbox">
+              <input type="checkbox" name="checkbox" id="checkbox" />
+              <label for="">Recuérdame</label>
+            </div>
+          </div>
+          <div class="content">
+            <div class="pass-link">
+              <a href="#">¿Olvidaste la contraseña?</a>
+            </div>
+          </div>
+          
+          <button type="submit" value="submit">Iniciar sesión</button>
+        </form>
+      </div>
+      
+      <div class="overlay-container">
+        <div class="overlay">
+          <div class="overlay-panel overlay-left">
+            <h1 class="title">
+              Registrate <br />
+              
+            </h1>
+            <p>Y empieza a publicitar tu negocio</p>
+            <button class="ghost" id="login">
+              Iniciar sesión
+              <i class="fa-solid fa-arrow-left"></i>
+            </button>
+          </div>
+
+          <div class="overlay-panel overlay-right">
+            <h1 class="title">
+              Registra  <br />
+              tus eventos
+            </h1>
+            <p>
+              Si aún no tienes una cuenta, únete a nosotros y comienza tu viaje
+            </p>
+            <button class="ghost" id="register">
+              Registrarse
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="main.js"></script>
+</html>
+
+            
