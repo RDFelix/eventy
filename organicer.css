@@ -1,0 +1,12 @@
+aside {
+  h2 {
+    font-size: x-large;
+    padding-inline: 20px;
+  }
+}
+
+.org{
+  display: flex;
+  flex-direction: column;
+  grid-template-columns: 1fr
+}
