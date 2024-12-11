@@ -187,6 +187,7 @@ main{
                 margin: 20px 0px;
                 width: 95%;
                 height: auto;
+                max-height: 300px;
                 height: auto;
                 display: grid;
                 grid-template-columns: .5fr .5fr;
